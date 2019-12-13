@@ -1,0 +1,42 @@
+dag-one:
+  default_args:
+    depends_on_past: false
+    email:
+    - xxxxxxx@xxxx.com
+    email_on_failure: true
+    owner: siva.chaitanya
+    retries: 1
+    retry_delay: 300
+    start_date: 2019-12-13
+  description: Airflow and Dag-Factory Example DAG One
+  schedule_interval: 0 10 * * *
+  tasks:
+    task-one:
+      bash_command: echo dag-one-task-one
+      operator: airflow.operators.BashOperator
+    task-two:
+      bash_command: echo dag-one-task-two
+      dependencies:
+      - task-one
+      operator: airflow.operators.BashOperator
+dag-two:
+  default_args:
+    depends_on_past: false
+    email:
+    - xxxxxxx@xxxx.com
+    email_on_failure: true
+    owner: siva.chaitanya
+    retries: 1
+    retry_delay: 300
+    start_date: 2019-12-13
+  description: Airflow and Dag-Factory Example DAG Two
+  schedule_interval: 0 12 * * *
+  tasks:
+    task-one:
+      bash_command: echo dag-one-task-one
+      operator: airflow.operators.BashOperator
+    task-two:
+      bash_command: echo dag-one-task-two
+      dependencies:
+      - task-one
+      operator: airflow.operators.BashOperator
