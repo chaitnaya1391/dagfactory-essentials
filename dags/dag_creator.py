@@ -4,7 +4,7 @@ import copy
 yaml.Dumper.ignore_aliases = lambda *args: True #This avoids YAML referencing; making DAGs YAML more readable
 
 
-with open("bash_jobs.yaml", "r") as stream:
+with open("jobs.yaml", "r") as stream:
     data = yaml.safe_load(stream)
 
 dags = data["dags"]
@@ -22,5 +22,5 @@ for dag_name in list(dags.keys()):
             pass
     dags[dag_name]['default_args'] = dag_default_args
 
-with open("bash_dags.yaml", "w") as file:
+with open("dags.yaml", "w") as file:
     yaml.dump(dags, file)
